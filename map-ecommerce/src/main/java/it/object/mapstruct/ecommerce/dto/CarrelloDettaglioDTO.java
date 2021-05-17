@@ -3,7 +3,6 @@ package it.object.mapstruct.ecommerce.dto;
 public class CarrelloDettaglioDTO {
 
 	private Long id;
-
 	private Integer quantita;
 	private Long idCarrello;
 	private Long idArticolo;

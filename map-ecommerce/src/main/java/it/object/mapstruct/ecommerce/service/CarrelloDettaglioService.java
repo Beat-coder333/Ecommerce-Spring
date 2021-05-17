@@ -8,11 +8,21 @@ import org.springframework.stereotype.Service;
 
 import it.object.mapstruct.ecommerce.dto.CarrelloDettaglioDTO;
 import it.object.mapstruct.ecommerce.mapper.CarrelloDettaglioMapper;
+import it.object.mapstruct.ecommerce.model.Articolo;
+import it.object.mapstruct.ecommerce.model.Carrello;
 import it.object.mapstruct.ecommerce.model.CarrelloDettaglio;
+import it.object.mapstruct.ecommerce.repository.ArticoloRepository;
 import it.object.mapstruct.ecommerce.repository.CarrelloDettaglioRepository;
+import it.object.mapstruct.ecommerce.repository.CarrelloRepository;
 
 @Service
 public class CarrelloDettaglioService {
+
+	@Autowired
+	private CarrelloRepository cartRepo;
+
+	@Autowired
+	private ArticoloRepository itemRepo;
 
 	@Autowired
 	private CarrelloDettaglioRepository cartDetRepo;
@@ -37,18 +47,24 @@ public class CarrelloDettaglioService {
 			cartDet.setQuantita(quantita);
 			cartDetRepo.save(cartDet);
 		} else {
-			insertArticle(idCarrello, idArticolo, quantita);
+			newArticle(idCarrello, idArticolo, quantita);
 
 		}
 	}
 
-	public void insertArticle(Long idCarrello, Long idArticolo, Integer quantita) {
-		cartDetRepo.insertNewArticle(idCarrello, idArticolo, quantita);
+	public void deleteArticle(Long idCarrello, Long idArticolo) {
+		cartDetRepo.deleteArticolo(idCarrello, idArticolo);
 
 	}
 
-	public void deleteArticle(Long idCarrello, Long idArticolo) {
-		cartDetRepo.deleteArticolo(idCarrello, idArticolo);
+	public void newArticle(Long idCarrello, Long idArticolo, Integer quantita) {
+		CarrelloDettaglio cartDet = new CarrelloDettaglio();
+		Carrello cart = cartRepo.findById(idCarrello).get();
+		cartDet.setCart(cart);
+		Articolo item = itemRepo.findById(idArticolo).get();
+		cartDet.setArticolo(item);
+		cartDet.setQuantita(quantita);
+		cartDetRepo.save(cartDet);
 
 	}
 
