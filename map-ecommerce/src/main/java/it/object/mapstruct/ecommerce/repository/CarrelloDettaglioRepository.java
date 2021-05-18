@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import it.object.mapstruct.ecommerce.model.CarrelloDettaglio;
@@ -19,9 +18,8 @@ public interface CarrelloDettaglioRepository extends JpaRepository<CarrelloDetta
 
 	public Optional<CarrelloDettaglio> findByCartIdAndArticoloId(Long idCarrello, Long idArticolo);
 
-	@Modifying
+	@Modifying(clearAutomatically = true)
 	@Transactional
-	@Query(value = "delete from CarrelloDettaglio cd where cd.cart.id = ?1 and cd.articolo.id = ?2")
-	public void deleteArticolo(Long IdCarrello, Long idArticolo);
+	void deleteByCartIdAndArticoloId(Long idCarrello, Long idArticolo);
 
 }

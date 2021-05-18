@@ -52,11 +52,6 @@ public class CarrelloDettaglioService {
 		}
 	}
 
-	public void deleteArticle(Long idCarrello, Long idArticolo) {
-		cartDetRepo.deleteArticolo(idCarrello, idArticolo);
-
-	}
-
 	public void newArticle(Long idCarrello, Long idArticolo, Integer quantita) {
 		CarrelloDettaglio cartDet = new CarrelloDettaglio();
 		Carrello cart = cartRepo.findById(idCarrello).get();
@@ -65,6 +60,11 @@ public class CarrelloDettaglioService {
 		cartDet.setArticolo(item);
 		cartDet.setQuantita(quantita);
 		cartDetRepo.save(cartDet);
+
+	}
+
+	public void deleteArticle(Long idCarrello, Long idArticolo) {
+		cartDetRepo.deleteByCartIdAndArticoloId(idCarrello, idArticolo);
 
 	}
 

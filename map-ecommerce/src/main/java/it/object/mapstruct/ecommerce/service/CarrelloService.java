@@ -28,7 +28,6 @@ public class CarrelloService {
 			cartDto = cartMapper.cartToDto(cart.get());
 		} else {
 			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
-			// crea nuovo carrello?
 		}
 		return cartDto;
 

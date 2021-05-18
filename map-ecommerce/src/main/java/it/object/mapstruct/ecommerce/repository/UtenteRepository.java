@@ -10,5 +10,5 @@ import it.object.mapstruct.ecommerce.model.Utente;
 @Repository
 public interface UtenteRepository extends JpaRepository<Utente, Long> {
 
-	Optional<Utente> findByNomeUtenteAndPassword(String nomeUtente, String password);
+	Optional<Utente> findByNomeUtenteAndPassword(String username, String password);
 }

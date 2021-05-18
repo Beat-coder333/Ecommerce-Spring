@@ -21,7 +21,7 @@ public class CarrelloDettaglio {
 	@Column(name = "quantita")
 	private Integer quantita;
 
-	@ManyToOne
+	@ManyToOne // non serve così
 	@JoinColumn(name = "id_carrello")
 	private Carrello cart;
 
