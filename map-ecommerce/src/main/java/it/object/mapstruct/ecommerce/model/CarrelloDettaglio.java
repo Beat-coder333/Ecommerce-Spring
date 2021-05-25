@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "carrello_dettaglio")
 public class CarrelloDettaglio {
@@ -21,10 +23,12 @@ public class CarrelloDettaglio {
 	@Column(name = "quantita")
 	private Integer quantita;
 
-	@ManyToOne // non serve così
+	@JsonIgnore
+	@ManyToOne
 	@JoinColumn(name = "id_carrello")
 	private Carrello cart;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_articolo")
 	Articolo articolo;

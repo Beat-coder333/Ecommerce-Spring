@@ -51,7 +51,8 @@ public class JWTService {
 
 			valid = true;
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("JWtService - Error check token", e);
+
 		}
 
 		return valid;
@@ -73,7 +74,7 @@ public class JWTService {
 			log.trace("Utente verificato! " + userName);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("error get user token", e);
 			user = null;
 		}
 		return user;

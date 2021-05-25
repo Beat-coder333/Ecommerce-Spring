@@ -8,9 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,9 +29,8 @@ public class Carrello {
 	private Utente user;
 
 	@JsonIgnore
-	@ManyToMany
-	@JoinTable(name = "carrello_dettaglio", joinColumns = @JoinColumn(name = "id_carrello", referencedColumnName = "id_carrello"), inverseJoinColumns = @JoinColumn(name = "id_articolo", referencedColumnName = "id_articolo"))
-	private List<Articolo> article;
+	@OneToMany
+	private List<CarrelloDettaglio> cartDetailsList;
 
 	public Long getId() {
 		return id;
@@ -50,11 +48,12 @@ public class Carrello {
 		this.user = user;
 	}
 
-	public List<Articolo> getArticle() {
-		return article;
+	public List<CarrelloDettaglio> getCartDetailsList() {
+		return cartDetailsList;
 	}
 
-	public void setArticle(List<Articolo> article) {
-		this.article = article;
+	public void setCartDetailsList(List<CarrelloDettaglio> cartDetailsList) {
+		this.cartDetailsList = cartDetailsList;
 	}
+
 }

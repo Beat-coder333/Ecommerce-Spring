@@ -2,17 +2,19 @@ package it.object.mapstruct.ecommerce.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
 import it.object.mapstruct.ecommerce.dto.LoginUtenteDTO;
 import it.object.mapstruct.ecommerce.model.Utente;
 
 @Mapper(componentModel = "spring")
-public interface LoginUtenteMapper {
+public interface LoginUtenteMapper extends EntityMapper<LoginUtenteDTO, Utente> {
 
-	LoginUtenteMapper INSTANCE = Mappers.getMapper(LoginUtenteMapper.class);
-
+	@Override
 	@Mapping(source = "nomeUtente", target = "username")
-	LoginUtenteDTO usertToDto(Utente utente);
+	LoginUtenteDTO toDto(Utente utente);
+
+	@Override
+	@Mapping(target = "password", ignore = true)
+	Utente toEntity(LoginUtenteDTO dto);
 
 }

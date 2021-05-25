@@ -1,6 +1,7 @@
 package it.object.mapstruct.ecommerce.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,16 @@ public class ArticoloService {
 	public List<ArticoloDTO> findAll() {
 		List<ArticoloDTO> articoloDtoList = null;
 		List<Articolo> articoli = articoloRepo.findAll();
-		articoloDtoList = articoloMapper.artToArtDto(articoli);
+		articoloDtoList = articoloMapper.toDto(articoli);
 		return articoloDtoList;
+	}
+
+	public ArticoloDTO findById(Long id) {
+		Optional<Articolo> itemOpt = articoloRepo.findById(id);
+		ArticoloDTO itemDto = null;
+		if (itemOpt.isPresent()) {
+			itemDto = articoloMapper.toDto(itemOpt.get());
+		}
+		return itemDto;
 	}
 }

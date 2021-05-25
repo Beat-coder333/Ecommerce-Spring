@@ -39,6 +39,7 @@ public class LoginController {
 			if (user == null) {
 				resp = new ResponseEntity<String>(HttpStatus.NO_CONTENT);
 			} else {
+				log.info("login - user logged in ");
 				String token = jwtServ.createJWTToken(user);
 				resp = new ResponseEntity<String>(token, HttpStatus.OK);
 			}

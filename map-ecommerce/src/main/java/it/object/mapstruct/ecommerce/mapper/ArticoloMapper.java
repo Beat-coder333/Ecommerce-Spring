@@ -1,20 +1,17 @@
 package it.object.mapstruct.ecommerce.mapper;
 
-import java.util.List;
-
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 import it.object.mapstruct.ecommerce.dto.ArticoloDTO;
 import it.object.mapstruct.ecommerce.model.Articolo;
 
 @Mapper(componentModel = "spring")
-public interface ArticoloMapper {
+public interface ArticoloMapper extends EntityMapper<ArticoloDTO, Articolo> {
 
-	ArticoloMapper INSTANCE = Mappers.getMapper(ArticoloMapper.class);
+	@Override
+	ArticoloDTO toDto(Articolo entity);
 
-	ArticoloDTO artToArtDto(Articolo articolo);
-
-	List<ArticoloDTO> artToArtDto(List<Articolo> articoli);
+	@Override
+	Articolo toEntity(ArticoloDTO dto);
 
 }

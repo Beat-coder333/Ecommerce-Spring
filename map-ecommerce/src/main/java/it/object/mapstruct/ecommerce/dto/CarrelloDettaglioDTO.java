@@ -1,11 +1,14 @@
 package it.object.mapstruct.ecommerce.dto;
 
+import it.object.mapstruct.ecommerce.model.Articolo;
+
 public class CarrelloDettaglioDTO {
 
 	private Long id;
 	private Integer quantita;
-	private Long idCarrello;
-	private Long idArticolo;
+	private Long idCarrello;// -
+	private Long idArticolo;// articolo article
+	private Articolo article;
 
 	public Long getId() {
 		return id;
@@ -37,6 +40,14 @@ public class CarrelloDettaglioDTO {
 
 	public void setIdArticolo(Long idArticolo) {
 		this.idArticolo = idArticolo;
+	}
+
+	public Articolo getArticle() {
+		return article;
+	}
+
+	public void setArticle(Articolo article) {
+		this.article = article;
 	}
 
 }

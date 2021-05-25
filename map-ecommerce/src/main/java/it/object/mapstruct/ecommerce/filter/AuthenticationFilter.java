@@ -49,7 +49,7 @@ public class AuthenticationFilter implements Filter {
 					httpResp.setStatus(HttpServletResponse.SC_FORBIDDEN);
 				}
 			} else {
-				log.error("TOKEN NON PRESENTE");
+				log.info("TOKEN NON PRESENTE");
 				httpResp.setStatus(HttpServletResponse.SC_FORBIDDEN);
 			}
 
